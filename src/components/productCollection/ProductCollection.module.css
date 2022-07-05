@@ -1,0 +1,23 @@
+.content {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: white;
+}
+
+.side-image {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
+.large-image {
+    /* position: absolute; */
+    width: 98%;
+    height: 90%;
+}
+
+.small-image {
+    /* position: absolute; */
+    width: 95%;
+    height: 80%;
+}

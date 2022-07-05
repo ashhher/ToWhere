@@ -1,0 +1,12 @@
+.product-intro-container {
+    margin: 20px auto;
+    background-color: white;
+}
+
+.product-detail-container {
+    background: white;
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
