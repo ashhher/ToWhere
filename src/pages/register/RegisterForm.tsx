@@ -31,7 +31,7 @@ export const RegisterForm = () => {
             className={styles['register-form']}
             name="basic"
             labelCol={{
-                span: 8,
+                span: 10,
             }}
             wrapperCol={{
                 span: 16,
@@ -96,7 +96,7 @@ export const RegisterForm = () => {
                 name="remember"
                 valuePropName="checked"
                 wrapperCol={{
-                    offset: 8,
+                    offset: 4,
                     span: 16,
                 }}
             >
@@ -105,7 +105,7 @@ export const RegisterForm = () => {
 
             <Form.Item
                 wrapperCol={{
-                    offset: 8,
+                    offset: 4,
                     span: 16,
                 }}
             >

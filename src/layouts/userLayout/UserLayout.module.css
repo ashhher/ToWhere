@@ -28,6 +28,11 @@
     line-height: 44px;
 }
 
+.content .top .content-form {
+    display:flex;
+    justify-content:center;
+}
+
 .content .top .content-header a {
     text-decoration: none;
 }

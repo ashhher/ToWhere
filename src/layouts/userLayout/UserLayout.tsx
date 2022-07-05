@@ -51,10 +51,12 @@ export const UserLayout: React.FC = (props) => {
                             <span className={styles["title"]}>React 旅游网</span>
                         </Link>
                     </div>
-                    {/* <div className={styles["desc"]}>
+                    <div className={styles["desc"]}>
                         慕课网 是我朝最具影响力的 线上课程学习网站
-                    </div> */}
-                    {props.children}
+                    </div>
+                    <div className={styles["content-form"]}>
+                        {props.children}
+                    </div>
                 </div>
             </Content>
             <Footer style={{ textAlign: "center" }}>{t("footer.detail")}</Footer>
