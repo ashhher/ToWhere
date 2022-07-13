@@ -1,7 +1,14 @@
 import React from 'react';
 import styles from './App.module.css';
-import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage } from "./pages/index";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage, ShoppingCartPage } from "./pages/index";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "./redux/hooks";
+
+const PrivateRoute = ({ children }) => {
+  const jwt = useSelector(s => s.user.token);
+  return jwt ? children : <Navigate to={"/signIn"} />
+}
+
 
 function App() {
   return (
@@ -14,6 +21,10 @@ function App() {
           <Route path="/detail/:tourId" element={<DetailPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/search/:keyword" element={<SearchPage />} />
+          <Route path="/shoppingCart" element={
+            <PrivateRoute>
+              <ShoppingCartPage />
+            </PrivateRoute>} />
           <Route path="*" element={<h1>404 Not Found 页面去火星了！</h1>} />
         </Routes>
       </BrowserRouter>
