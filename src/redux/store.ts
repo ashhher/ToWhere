@@ -8,6 +8,7 @@ import { productDetailSlice } from "./productDetail/productDetailSlice";
 import { productSearchSlice } from "./productSearch/productSearchSlice";
 import { userSlice } from "./user/userSlice";
 import { persistStore, persistReducer } from "redux-persist";
+import { shoppingCartSlice } from "./shoppingCart/shoppingCartSlice";
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     productDetail: productDetailSlice.reducer,
     productSearch: productSearchSlice.reducer,
     user: userSlice.reducer,
+    shoppingCart: shoppingCartSlice.reducer,
 });
 
 // 储存持久化登录信息
