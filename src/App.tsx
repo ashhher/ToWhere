@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './App.module.css';
-import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage, ShoppingCartPage } from "./pages/index";
+import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage, ShoppingCartPage, PlaceOrderPage } from "./pages/index";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "./redux/hooks";
 import { useDispatch } from 'react-redux';
@@ -35,7 +35,11 @@ function App() {
             <PrivateRoute>
               <ShoppingCartPage />
             </PrivateRoute>} />
-          <Route path="*" element={<h1>404 Not Found 页面去火星了！</h1>} />
+          <Route path="/placeOrder" element={
+            <PrivateRoute>
+              <PlaceOrderPage />
+            </PrivateRoute>} />
+          <Route path="*" element={<h1>404 Not Found! </h1>} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -43,5 +43,20 @@
         "notes": "预定须知",
         "comments": "产品评价",
         "add_to_cart": "加入购物车"
+    },
+    "check_out": {
+        "item": "产品",
+        "price": "价格",
+        "back": "回到首页",
+        "pay": "支付",
+        "complete": "支付成功",
+        "total": "总计"
+    },
+    "cart": {
+        "origion": "原价",
+        "current": "现价",
+        "order": "下单支付",
+        "clear": "清空",
+        "total": "总计"
     }
 }

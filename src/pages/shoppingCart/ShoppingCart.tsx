@@ -1,16 +1,13 @@
-import { Spin } from "antd";
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
 import { MainLayout } from "../../layouts";
 import { Row, Col, Affix } from "antd";
 import { PaymentCard, ProductList } from "../../components";
 import { useSelector } from "../../redux/hooks";
 import styles from "./ShoppingCart.module.css";
-import { deleteShoppingCartItems } from "../../redux/shoppingCart/shoppingCartSlice";
+import { deleteShoppingCartItems, checkout } from "../../redux/shoppingCart/shoppingCartSlice";
+import { useNavigate } from "react-router-dom";
 
-type ShoppingCartParams = {
-}
 
 export const ShoppingCartPage: React.FC = () => {
     const loading = useSelector(s => s.shoppingCart.loading);
@@ -18,13 +15,18 @@ export const ShoppingCartPage: React.FC = () => {
     const jwt = useSelector(s => s.user.token) as string;
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const clearShoppingCart = () => {
         dispatch(deleteShoppingCartItems({ jwt, itemIds: items.map(s => s.id) }))
     }
 
-    const checkOut = () => {
-
+    const checkoutOrder = () => {
+        if(items.length <= 0) {
+            return
+        }
+        dispatch(checkout(jwt));
+        navigate('/placeOrder')
     }
 
     return (
@@ -43,9 +45,7 @@ export const ShoppingCartPage: React.FC = () => {
                                 originalPrice={items.map(s => s.originalPrice).reduce((a, b) => a + b, 0)}
                                 price={items.map(s => s.originalPrice * (s.discountPresent ? s.discountPresent : 1)).reduce((a, b) => a + b, 0)}
                                 onShoppingCartClear={clearShoppingCart}
-                                onCheckout={function (): void {
-                                    throw new Error("Function not implemented.");
-                                }} />
+                                onCheckout={checkoutOrder} />
                         </div>
                     </Affix>
                 </Col>

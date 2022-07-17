@@ -91,11 +91,12 @@ export const Header: React.FC = () => {
                         <Button.Group className={styles['button-group']}>
                             <span>
                                 {t("header.welcome")}
-                                <Typography.Text strong>{username}</Typography.Text>
+                                <Typography.Text strong style={{ marginLeft: 5 }}> {username}</Typography.Text>
                             </span>
                             <Button
                                 loading={shoppingCartLoading}
-                                onClick={() => toPage('/shoppingCart')}>
+                                onClick={() => toPage('/shoppingCart')}
+                                style={{ marginLeft: 10 }}>
                                 {t("header.shoppingCart")}({shoppingCartItems.length})
                             </Button>
                             <Button onClick={onSignOut}>{t("header.signOut")}</Button>
