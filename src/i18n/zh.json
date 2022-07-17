@@ -35,5 +35,13 @@
         "domestic_travel": "国内游推荐",
         "joint_venture": "合作企业",
         "start_from": "(起)"
+    },
+    "detail": {
+        "error": "网站出错",
+        "features": "产品特色",
+        "fees": "产品费用",
+        "notes": "预定须知",
+        "comments": "产品评价",
+        "add_to_cart": "加入购物车"
     }
 }

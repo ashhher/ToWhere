@@ -19,6 +19,7 @@ interface JwtPayload extends DefaultJwtPayload {
 export const Header: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
 
     // i18next
     const { t } = useTranslation();
@@ -26,9 +27,10 @@ export const Header: React.FC = () => {
     // react-redux 自动subscribe
     const language = useSelector((state) => state.language.language);
     const languageList = useSelector((state) => state.language.languageList);
-    const dispatch = useDispatch();
-
     const jwt = useSelector((state) => state.user.token);
+    const shoppingCartItems = useSelector(s => s.shoppingCart.items);
+    const shoppingCartLoading = useSelector(s => s.shoppingCart.loading);
+
     const [username, setUsername] = useState("");
 
     useEffect(() => {
@@ -91,7 +93,11 @@ export const Header: React.FC = () => {
                                 {t("header.welcome")}
                                 <Typography.Text strong>{username}</Typography.Text>
                             </span>
-                            <Button onClick={() => toPage('/shoppingCart')}>{t("header.shoppingCart")}</Button>
+                            <Button
+                                loading={shoppingCartLoading}
+                                onClick={() => toPage('/shoppingCart')}>
+                                {t("header.shoppingCart")}({shoppingCartItems.length})
+                            </Button>
                             <Button onClick={onSignOut}>{t("header.signOut")}</Button>
                         </Button.Group>
                     ) : (

@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./DetailPage.module.css";
-import { Col, Row, Spin, DatePicker, Divider, Typography, Anchor, Menu } from "antd";
+import { Col, Row, Spin, DatePicker, Divider, Typography, Anchor, Menu, Button } from "antd";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Footer, Header, ProductComments, ProductIntro } from "../../components";
+import { useTranslation } from "react-i18next";
 import { commentMockData } from "./mockup";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
 import { getProductDetail } from "../../redux/productDetail/productDetailSlice";
 import { MainLayout } from "../../layouts";
+import { addShoppingCartItem } from "../../redux/shoppingCart/shoppingCartSlice";
 
 const { RangePicker } = DatePicker;
 
@@ -24,10 +27,15 @@ export const DetailPage: React.FC = () => {
     // const [product, setProduct] = useState<any>(null);
     // const [error, setError] = useState<string | null>(null);
 
+    // i18next
+    const { t } = useTranslation();
+
     // 使用redux进行初始化
-    const loading = useSelector(state => state.productDetail.loading);
-    const error = useSelector(state => state.productDetail.error);
-    const product = useSelector(state => state.productDetail.data);
+    const loading = useSelector(s => s.productDetail.loading);
+    const error = useSelector(s => s.productDetail.error);
+    const product = useSelector(s => s.productDetail.data);
+    const jwt = useSelector(s => s.user.token) as string;
+    const shoppingCartLoading = useSelector(s => s.shoppingCart.loading);
 
     const dispatch = useDispatch();
 
@@ -35,6 +43,11 @@ export const DetailPage: React.FC = () => {
     useEffect(() => {
         dispatch(getProductDetail(tourId ? tourId : ''));
     }, []);
+
+    // 处理加入购物车按钮
+    const addToCart = () => {
+        dispatch(addShoppingCartItem({ jwt, tourId: product.id }));
+    }
 
     // 处理loading及报错
     if (loading) {
@@ -51,7 +64,7 @@ export const DetailPage: React.FC = () => {
     }
 
     if (error) {
-        return <h1>网站出错：{error}</h1>
+        return <h1>{t("detail.error")}{error}</h1>
     }
 
     return (
@@ -73,6 +86,16 @@ export const DetailPage: React.FC = () => {
                             />
                         </Col>
                         <Col span={11}>
+                            <Button
+                                className={styles["add-to-cart"]}
+                                type="primary"
+                                danger
+                                loading={shoppingCartLoading}
+                                onClick={addToCart}
+                            >
+                                <ShoppingCartOutlined />
+                                {t("detail.add_to_cart")}
+                            </Button>
                             <RangePicker open style={{ marginTop: 20 }} />
                         </Col>
                     </Row>
@@ -81,44 +104,44 @@ export const DetailPage: React.FC = () => {
                 <Anchor className={styles["product-detail-anchor"]}>
                     <Menu mode="horizontal">
                         <Menu.Item key={1}>
-                            <Anchor.Link href="#features" title="产品特色"></Anchor.Link>
+                            <Anchor.Link href="#features" title={t("detail.features")}></Anchor.Link>
                         </Menu.Item>
                         <Menu.Item key={2}>
-                            <Anchor.Link href="#fees" title="产品费用"></Anchor.Link>
+                            <Anchor.Link href="#fees" title={t("detail.fees")}></Anchor.Link>
                         </Menu.Item>
                         <Menu.Item key={3}>
-                            <Anchor.Link href="#notes" title="预定须知"></Anchor.Link>
+                            <Anchor.Link href="#notes" title={t("detail.notes")}></Anchor.Link>
                         </Menu.Item>
                         <Menu.Item key={4}>
-                            <Anchor.Link href="#comments" title="产品评价"></Anchor.Link>
+                            <Anchor.Link href="#comments" title={t("detail.comments")}></Anchor.Link>
                         </Menu.Item>
                     </Menu>
                 </Anchor>
                 {/* 产品特色 */}
                 <div id="features" className={styles["product-detail-container"]} style={{ marginTop: 0 }}>
                     <Divider orientation={'center'}>
-                        <Typography.Title level={3}>产品特色</Typography.Title>
+                        <Typography.Title level={3}>{t("detail.features")}</Typography.Title>
                     </Divider>
                     <div dangerouslySetInnerHTML={{ __html: product.features }} style={{ margin: 50 }}></div>
                 </div>
                 {/* 产品费用 */}
                 <div id="fees" className={styles["product-detail-container"]}>
                     <Divider orientation={'center'}>
-                        <Typography.Title level={3}>产品费用</Typography.Title>
+                        <Typography.Title level={3}>{t("detail.fees")}</Typography.Title>
                     </Divider>
                     <div dangerouslySetInnerHTML={{ __html: product.fees }} style={{ margin: 50 }}></div>
                 </div>
                 {/* 预定须知 */}
                 <div id="notes" className={styles["product-detail-container"]}>
                     <Divider orientation={'center'}>
-                        <Typography.Title level={3}>预定须知</Typography.Title>
+                        <Typography.Title level={3}>{t("detail.notes")}</Typography.Title>
                     </Divider>
                     <div dangerouslySetInnerHTML={{ __html: product.notes }} style={{ margin: 50 }}></div>
                 </div>
                 {/* 产品评价 */}
                 <div id="comments" className={styles["product-detail-container"]}>
                     <Divider orientation={'center'}>
-                        <Typography.Title level={3}>产品评价</Typography.Title>
+                        <Typography.Title level={3}>{t("detail.comments")}</Typography.Title>
                     </Divider>
                     <div style={{ margin: 50 }}><ProductComments data={commentMockData} /></div>
                 </div>

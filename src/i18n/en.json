@@ -3,8 +3,8 @@
         "slogan": "Make travel happier",
         "add_new_language": "add new language",
         "title": "React Travel",
-        "register":"Register",
-        "signin":"Sign In",
+        "register": "Register",
+        "signin": "Sign In",
         "input": "Please input your destination or keyword",
         "home_page": "Home",
         "weekend": "Weekend",
@@ -17,17 +17,17 @@
         "theme": "Theme",
         "custom": "Custom",
         "study": "Study",
-        "visa":"Visa",
-        "enterprise":"Enterprise",
-        "high_end":"High-end",
-        "outdoor":"Outdoor",
-        "insurance":"Insurance",
+        "visa": "Visa",
+        "enterprise": "Enterprise",
+        "high_end": "High-end",
+        "outdoor": "Outdoor",
+        "insurance": "Insurance",
         "shoppingCart": "Shopping Cart",
         "signOut": "Sign Out",
         "welcome": "Welcome back "
     },
     "footer": {
-        "detail" : "All rights reserved @ ReactTravel.com"
+        "detail": "All rights reserved @ ReactTravel.com"
     },
     "home_page": {
         "hot_recommended": "Hot Recommended",
@@ -35,5 +35,13 @@
         "domestic_travel": "Domestic travel",
         "joint_venture": "Joint Venture",
         "start_from": "(start from)"
+    },
+    "detail": {
+        "error": "Error",
+        "features": "Features",
+        "fees": "Fees",
+        "notes": "Notes",
+        "comments": "Comments",
+        "add_to_cart": "Add To Cart"
     }
 }
