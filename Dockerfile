@@ -15,7 +15,13 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 # 构建镜像
-# docker build -t react-web .
+# docker build -t react-tourism-ecommerce .
 #                  (项目名)
+# 输出
+# docker save -o xh.tar xxx:xxx
+# 
+# 载入
+# docker load -i xh.tar
+# 
 # 部署项目
-# docker run -d -p 12231:80 react-web
+# docker run -d -p 39651:80 react-tourism-ecommerce
