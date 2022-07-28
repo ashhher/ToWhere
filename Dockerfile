@@ -18,7 +18,7 @@ CMD ["nginx", "-g", "daemon off;"]
 # docker build -t react-tourism-ecommerce .
 #                  (项目名)
 # 输出
-# docker save -o xh.tar xxx:xxx
+# docker save -o xh.tar react-tourism-ecommerce:latest
 # 
 # 载入
 # docker load -i xh.tar
