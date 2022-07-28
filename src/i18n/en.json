@@ -42,7 +42,15 @@
         "fees": "Fees",
         "notes": "Notes",
         "comments": "Comments",
-        "add_to_cart": "Add To Cart"
+        "add_to_cart": "Add To Cart",
+        "name": "Name",
+        "price": "Price",
+        "sale": "Sale Price",
+        "discount": "Available Disount",
+        "no_dicount": "No Discount",
+        "no_coupon": "No Coupon",
+        "star": "Star",
+        "every": "per person"
     },
     "check_out": {
         "item": "Items",

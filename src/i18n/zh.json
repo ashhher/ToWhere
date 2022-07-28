@@ -42,7 +42,15 @@
         "fees": "产品费用",
         "notes": "预定须知",
         "comments": "产品评价",
-        "add_to_cart": "加入购物车"
+        "add_to_cart": "加入购物车",
+        "name": "线路名称",
+        "price": "价格",
+        "sale": "限时抢购折扣",
+        "discount": "领取优惠",
+        "no_dicount": "暂无折扣",
+        "no_coupon": "无优惠券可领",
+        "star": "星",
+        "every": "人起"
     },
     "check_out": {
         "item": "产品",

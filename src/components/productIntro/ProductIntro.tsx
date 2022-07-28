@@ -1,6 +1,7 @@
 import { Typography, Carousel, Image, Rate, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./ProductIntro.module.css";
 
 interface PropsType {
@@ -50,16 +51,18 @@ export const ProductIntro: React.FC<PropsType> = ({
     pictures,
 }) => {
 
+    const { t } = useTranslation();
+
     // 【3】 表内数据 Table组件所需参数
     const tableDataSource: RowType[] = [
         {
             key: 0,
-            title: "路线名称",
+            title: t("detail.name"),
             description: title,
         },
         {
             key: 1,
-            title: "价格",
+            title: t("detail.price"),
             description: (
                 <>
                     ¥{" "}
@@ -71,7 +74,7 @@ export const ProductIntro: React.FC<PropsType> = ({
         },
         {
             key: 2,
-            title: "限时抢购折扣",
+            title: t("detail.sale"),
             description: discount ? (
                 <>
                     ¥ <Typography.Text delete>{price}</Typography.Text>{" "}
@@ -80,27 +83,28 @@ export const ProductIntro: React.FC<PropsType> = ({
                     </Typography.Text>
                 </>
             ) : (
-                "暂无折扣"
+                t("detail.no_discount") as string
             ),
         },
         {
             key: 3,
-            title: "领取优惠",
-            description: coupons ? discount : "无优惠券可领",
+            title: t("detail.discount"),
+            description: coupons ? discount : t("detail.no_coupon") as string,
         },
         {
             key: 4,
-            title: "线路评价",
+            title: t("detail.comments"),
             description: (
                 <>
                     <Rate disabled allowHalf defaultValue={+rating} />
                     <Typography.Text style={{ marginLeft: 10 }}>
-                        {rating} 星
+                        {rating} {t("detail.star")}
                     </Typography.Text>
                 </>
             ),
         },
     ];
+
 
     return (
         <div className={styles["intro-container"]}>
@@ -109,11 +113,11 @@ export const ProductIntro: React.FC<PropsType> = ({
             <div className={styles["intro-detail-content"]}>
                 <Typography.Text style={{ marginLeft: 20 }}>
                     ¥ <span className={styles["intro-detail-strong-text"]}>{price}</span>{" "}
-                    /人起
+                    /{t("detail.every")}
                 </Typography.Text>
                 <Typography.Text style={{ marginLeft: 50 }}>
                     <span className={styles["intro-detail-strong-text"]}>{rating}</span>{" "}
-                    分
+                    {t("detail.star")}
                 </Typography.Text>
             </div>
             <Carousel autoplay slidesToShow={3}>
