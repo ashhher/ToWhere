@@ -1,4 +1,8 @@
 .payment-credit-card {
-    margin: 50px !important;
+    margin: 10px 50px !important;
     max-width: 400px;
+}
+
+.payment-form {
+    margin: 50px auto;
 }
